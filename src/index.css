@@ -41,3 +41,44 @@ body{
     }
   }
 }
+
+.quiz--container{
+  color:#11c973
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .form--card{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid tomato;
+  }
+
+  /* hide radio iput to make labels like a btn*/
+  & .radio-input {
+    display: none;
+  }
+
+  & .radio-label {
+    padding: .8rem 1.5rem;
+    margin: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #15181a;
+    font-family: 'Montserrat' sans-serif;
+  }
+
+  & .radio-input:checked + .radio-label {
+    background-color: #c0c0c0;
+  }
+}
+
+
+
+
+
