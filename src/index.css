@@ -43,18 +43,48 @@ body{
 }
 
 .quiz--container{
-  color:#11c973
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .checkAnswer--btn{
+    font-size: 1rem;
+    margin: 3em 0 3em 0;
+    padding: 1em 2em;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #11c973;
+    font-family: 'Montserrat' sans-serif;
+    color: #fff;
+    cursor: pointer;
+
+    &:active{
+      transform: scale(0.95);
+    }
+  }
 }
 
 form{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  max-width: 800px;
 
   & .form--card{
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid tomato;
+    align-content: center;
+    border-bottom: 2px solid rgb(209, 201, 199);
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  & h2{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color:#11c973;
+    max-width:600px;
   }
 
   /* hide radio iput to make labels like a btn*/
@@ -63,6 +93,10 @@ form{
   }
 
   & .radio-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: .8rem 1.5rem;
     margin: 1rem;
     background-color: #f0f0f0;
@@ -77,6 +111,10 @@ form{
     background-color: #c0c0c0;
   }
 }
+
+
+
+
 
 
 
