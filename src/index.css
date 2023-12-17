@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
 /* Reset default */
+*{
+  box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     min-height: 100vh;
     display: grid;
     place-content: center;
@@ -21,8 +24,26 @@ body{
   color: #11c973;
 
   & h1{
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
+    text-align: center;
+    max-width: 60vw;
+    @media screen and (min-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
+  & p{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1.5em;
+    max-width: 600px;
+    text-align: center;
+    max-width: 60vw;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 
   & .start--btn{
@@ -70,21 +91,44 @@ form{
   align-items: center;
   justify-content: center;
   max-width: 800px;
+  height: 100%;
+  margin: 0;
 
   & .form--card{
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    display: grid;
+    grid-template: 
+    "answer"
+    "answer"
+    "answer"
+    "answer";
+    grid-template-rows: repeat(4, 1fr);
     border-bottom: 2px solid rgb(209, 201, 199);
     padding: 1rem;
-    margin-top: 1rem;
+    width: 80vw;
+  
+    @media screen and (min-width: 768px) {
+      grid-template-areas: 
+      "answer answer answer answer";
+      grid-template-columns: repeat(4, 1fr);
+      padding-bottom: 0;
+      max-height: 250px;
+      margin-top: 3rem;
+    }
   }
 
   & h2{
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: bold;
     color:#11c973;
-    max-width:600px;
+    max-width: 600px;
+    margin-top: 4rem;
+    width: 80vw;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      font-size: 1.5rem;
+      max-width: 100%;
+    }
   }
 
   /* hide radio iput to make labels like a btn*/
@@ -97,20 +141,40 @@ form{
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: .8rem 1.5rem;
+    font-size: .8rem;
     margin: 1rem;
     background-color: #f0f0f0;
+    padding: .4rem .8rem;
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     color: #15181a;
     font-family: 'Montserrat' sans-serif;
+
+    @media screen and (min-width: 768px) {
+      padding: .8rem 1.5rem;
+      font-size: 1rem;
+    }
   }
 
   & .radio-input:checked + .radio-label {
     background-color: #c0c0c0;
   }
 }
+
+/* Loading */
+
+.loading-text {
+  animation: loading 1.5s infinite;
+  color:#11c973;
+}
+
+@keyframes loading {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 
 
 

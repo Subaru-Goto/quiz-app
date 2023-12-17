@@ -1,9 +1,33 @@
-# React + Vite
+# Quiz app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This small project is to deepen my understaing of React.
+Props, useState and useEffect are the 3 topics that I wanted to focus through this project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# quiz-app
+### Links
+
+- Live Site URL:
+
+## My process
+
+### Built with
+- Semantic HTML5 markup
+- CSS
+  - flexbox
+  - CSS gird
+
+- Javascript
+  - React
+
+### What I learned
+- React props, useState, useEffect, useId
+
+### Dependencies
+- vite
+- html-entities (https://www.npmjs.com/package/html-entities#user-content-decodetext-options)
+
+- Open trivia database (https://opentdb.com/api_config.php)
+
+## Author
+Subaru Goto

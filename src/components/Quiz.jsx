@@ -1,11 +1,14 @@
-import { useId } from "react"
+import { Fragment, useId, useState, useEffect} from "react"
 import {decode} from "html-entities";
 
-function Quiz({ data }) {
-  const { question, allAnswers } = data;
+function Quiz({ data, handleAnswerClick, selectedAnswers,
+   isFinalAnswer, questionIndex}) {
+  const { question, allAnswers, correct_answer } = data;
+  const [decodedQuestion, setDecodedQuestion] = useState("");
+  const [randomAnswers, setRandomAnswers] = useState([]);
   const id = useId();
 
-  const generateRandomFourIndex = (arr) => {
+  const randomizeArrayOrder = (arr) => {
     {/* random returns float value between 0 and 1,
     by reducing the return value with 5 will generate
     number between -0.5 and 0.5 
@@ -13,53 +16,62 @@ function Quiz({ data }) {
     and sort based on smaller value */}
     return arr.sort(() => Math.random() - 0.5);
   }
-  const randomAnswers = generateRandomFourIndex(allAnswers)
+
+  useEffect (() => {
+    // Generate random array only once
+    setDecodedQuestion(decode(question));
+    const decodedAnswers = allAnswers.map(answer => decode(answer));
+    setRandomAnswers(randomizeArrayOrder(decodedAnswers))
+  }, [data])
+
+  const radioInputs = randomAnswers.map((answer, index) => {
+    const selectedAnnswerArr = Object.values(selectedAnswers);
+    const isSelectedAnswer = selectedAnnswerArr.includes(answer);
+    const isCorrectAnswer = correct_answer === answer;
+
+    let labelStyle = {};
+    if (isFinalAnswer && isCorrectAnswer) {
+      labelStyle.backgroundColor = "#11c973";
+      labelStyle.color = "#fff";
+      labelStyle.border = "1px solid #fff"
+    } else if (isFinalAnswer && !isCorrectAnswer && isSelectedAnswer) {
+      labelStyle.backgroundColor = "tomato";
+      labelStyle.color = "#fff";
+      labelStyle.border = "1px solid #fff"
+    }
+
+    return (
+      <Fragment key={index}>
+        <input
+          type="radio"
+          id={id + index}
+          name="quizSelections"
+          className="radio-input"
+          disabled={isFinalAnswer}
+          value={answer}
+          onChange={() => {
+            handleAnswerClick(decodedQuestion, answer);
+          }
+          }
+          checked={selectedAnnswerArr[questionIndex] === answer}
+
+        />
+        <label
+        htmlFor={id + index}
+        className="radio-label"
+        style={isFinalAnswer?labelStyle:{}}>
+          {answer}
+        </label>
+    </Fragment>
+    )
+  })
 
   return (
     <>
       <form>
-        {/* Original question is encoded */}
-      <h2>{decode(question)}</h2>
+      <h2>{decodedQuestion}</h2>
         <div className="form--card">
-          <input
-            type="radio"
-            id={id + "1"}
-            name={randomAnswers[0]}
-            className="radio-input"
-          />
-          <label htmlFor={id + "1"} className="radio-label">
-            {randomAnswers[0]}
-          </label>
-
-          <input
-            type="radio"
-            id={id + "2"}
-            name={randomAnswers[1]}
-            className="radio-input"
-          />
-          <label htmlFor={id + "2"} className="radio-label">
-          {randomAnswers[1]}
-          </label>
-
-          <input
-            type="radio"
-            id={id + "3"}
-            name={randomAnswers[2]}
-            className="radio-input"
-          />
-          <label htmlFor={id + "3"} className="radio-label">
-          {randomAnswers[2]}
-          </label>
-
-          <input
-            type="radio"
-            id={id + "4"}
-            name={randomAnswers[3]}
-            className="radio-input"
-          />
-          <label htmlFor={id + "4"} className="radio-label">
-          {randomAnswers[3]}
-          </label>
+          {radioInputs}
         </div>
       </form>
     </>
