@@ -26,7 +26,7 @@ function Quiz({ data, handleAnswerClick, selectedAnswers,
 
   const radioInputs = randomAnswers.map((answer, index) => {
     const selectedAnnswerArr = Object.values(selectedAnswers);
-    const isSelectedAnswer = selectedAnnswerArr.includes(answer);
+    const isSelectedAnswer = selectedAnnswerArr[questionIndex] === answer;
     const isCorrectAnswer = correct_answer === answer;
 
     let labelStyle = {};
